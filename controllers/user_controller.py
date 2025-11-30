@@ -34,7 +34,7 @@ def get_all_users(auth_info):
     if auth_info.user.is_admin == True:
         return jsonify({"message": "users found", "results": app_users_schema.dump(users_query)}), 201
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -44,7 +44,7 @@ def get_user_by_id(user_id, auth_info):
     if auth_info.user.is_admin == True or user_id == str(auth_info.user.user_id):
         return jsonify({"message": "user found", "result": app_user_schema.dump(user_query)}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -78,7 +78,7 @@ def update_user_by_id(user_id, auth_info):
     
         return jsonify({"message": "user updated", "result": app_user_schema.dump(query)})
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
         
     
 
@@ -101,6 +101,6 @@ def delete_user_by_id(user_id, auth_info):
         
         return jsonify({"message": "user updated", "result": app_user_schema.dump(query)})
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
         

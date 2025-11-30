@@ -24,7 +24,7 @@ def add_warranty(auth_info):
 
         return jsonify({"message": "warranty added", "result": warranty_schema.dump(new_warranty)}), 201
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -74,7 +74,7 @@ def update_warranty_by_id(warranty_id, auth_info):
 
         return jsonify({"message": "warranty updated", "result": warranty_schema.dump(query)}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -94,4 +94,4 @@ def delete_warranty_by_id(warranty_id, auth_info):
         
         return jsonify({"message": "warranty deleted"}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403

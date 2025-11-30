@@ -24,7 +24,7 @@ def add_company(auth_info):
 
         return jsonify({"message": "company added", "result": company_schema.dump(new_company)}), 201
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403
 
 @authenticate
 def get_all_companies():
@@ -62,7 +62,7 @@ def update_company_by_id(company_id, auth_info):
 
         return jsonify({"message": "company updated", "result": company_schema.dump(query)}), 200
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -82,4 +82,4 @@ def delete_company_by_id(company_id, auth_info):
         
         return jsonify({"message": "company deleted"}), 200
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403

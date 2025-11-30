@@ -26,7 +26,7 @@ def add_product(auth_info):
 
         return jsonify({"message": "product added", "result": product_schema.dump(new_product)}), 201
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -66,7 +66,7 @@ def add_product_to_category(auth_info):
 
         return jsonify({"message": "product added to category", "results": product_schema.dump(product_query)}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -76,7 +76,7 @@ def get_all_products(auth_info):
 
         return jsonify({"message": "products found", "results": products_schema.dump(query)}), 200
 
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 @authenticate_return_auth
 def get_product_by_id(product_id, auth_info):
@@ -87,7 +87,7 @@ def get_product_by_id(product_id, auth_info):
         return jsonify({"message": "product not found"}), 404
 
     if auth_info.user.is_admin == False and query.active == False:
-        return jsonify({"message": "unauthorized"}), 401
+        return jsonify({"message": "unauthorized"}), 403
 
     return jsonify({"message": "product found", "result": product_schema.dump(query)}), 200
 
@@ -137,7 +137,7 @@ def update_product_by_id(product_id, auth_info):
 
         return jsonify({"message": "product updated", "result": product_schema.dump(query)}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -157,4 +157,4 @@ def delete_product_by_id(product_id, auth_info):
         
         return jsonify({"message": "product deleted"}), 200
     
-    return jsonify({"message": "unauthorized"}), 401
+    return jsonify({"message": "unauthorized"}), 403

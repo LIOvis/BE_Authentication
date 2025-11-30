@@ -24,7 +24,7 @@ def add_category(auth_info):
 
         return jsonify({"message": "category added", "result": category_schema.dump(new_category)}), 201
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403
 
 @authenticate
 def get_all_categories():
@@ -62,7 +62,7 @@ def update_category_by_id(category_id, auth_info):
 
         return jsonify({"message": "category updated", "result": category_schema.dump(query)}), 200
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403
 
 
 @authenticate_return_auth
@@ -82,4 +82,4 @@ def delete_category_by_id(category_id, auth_info):
         
         return jsonify({"message": "category deleted"}), 200
     
-    return jsonify ({"message": "unauthorized"}), 401
+    return jsonify ({"message": "unauthorized"}), 403
